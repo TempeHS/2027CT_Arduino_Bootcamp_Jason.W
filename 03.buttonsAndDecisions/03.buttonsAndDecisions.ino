@@ -41,9 +41,24 @@ const int BUTTON_PIN = 4;  // Grove Button on D4
 const int LED_PIN = 6;     // Grove LED on D6
 
 void setup() {
-
+  pinMode(LED_PIN, OUTPUT);     // this pin will SEND signals
 }
 
 void loop() {
+  digitalWrite(LED_PIN, HIGH);  // 5 volts on the pin: LED on
+  delay(200);
+  digitalWrite(LED_PIN, LOW);   // 0 volts: LED off
+  delay(200);
+}
 
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT);   // this pin will RECEIVE signals
+  Serial.begin(115200);
+}
+
+void loop() {
+  int buttonState = digitalRead(BUTTON_PIN);
+  Serial.println(buttonState);
+  delay(50);
 }
