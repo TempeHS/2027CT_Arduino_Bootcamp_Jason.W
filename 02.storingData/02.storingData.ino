@@ -22,9 +22,14 @@
 */
 
 void setup() {
-
+  Serial.begin(115200);
+  Serial.println("Starting counter demo");
+  int counter = 0;
+  counter = 100;
 }
 
 void loop() {
-
+  counter = counter + 1;         // loop() can use it too
+  Serial.println(counter);
+  delay(500);
 }
