@@ -41,24 +41,32 @@ const int BUTTON_PIN = 4;  // Grove Button on D4
 const int LED_PIN = 6;     // Grove LED on D6
 
 void setup() {
-  pinMode(LED_PIN, OUTPUT);     // this pin will SEND signals
-}
-
-void loop() {
-  digitalWrite(LED_PIN, HIGH);  // 5 volts on the pin: LED on
-  delay(200);
-  digitalWrite(LED_PIN, LOW);   // 0 volts: LED off
-  delay(200);
-}
-
-void setup() {
   pinMode(LED_PIN, OUTPUT);
   pinMode(BUTTON_PIN, INPUT);   // this pin will RECEIVE signals
   Serial.begin(115200);
 }
 
 void loop() {
-  int buttonState = digitalRead(BUTTON_PIN);
-  Serial.println(buttonState);
-  delay(50);
+  int reading = random(0, 100);
+  Serial.print("Reading: ");
+  Serial.println(reading);
+
+  int zone = reading / 25;    // whole-number division: gives 0, 1, 2 or 3
+
+  switch (zone) {
+    case 0:
+      Serial.println("  zone 0: lowest quarter");
+      break;
+    case 1:
+      Serial.println("  zone 1");
+      break;
+    case 2:
+      Serial.println("  zone 2");
+      break;
+    default:
+      Serial.println("  zone 3: highest quarter");
+      break;
+  }
+
+  delay(1000);
 }
